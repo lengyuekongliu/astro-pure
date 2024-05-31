@@ -1,0 +1,42 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <BaseHead title={title} description={description} />
+    </head>
+    <body>
+        <header>
+            <div class="max-w-3xl flex mx-auto px-4 py-8 justify-between ">
+                <a href="#" class="text-nowrap text-2xl leading-8 py-1 font-semibold font-serif"> 咸鱼的日常 </a>
+                <nav class="w-full flex flex-row justify-end items-center">
+                    <ul class="flex gap-x-5 font-bold">
+                        <li><a href="#">文章</a></li>
+                        <li><a href="#">归档</a></li>
+                        <li><a href="#">分类</a></li>
+                        <li><a href="#">关于</a></li>
+                        <li><a href="#" class="icon i-mdi-twitter"></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <slot />
+        </main>
+        <footer>footer</footer>
+    </body>
+</html>
+
+<style>
+nav ul li {
+    padding: 1px 2px;
+}
+
+nav ul li:hover {
+    color: white;
+    background-color: #2e405b;
+}
+</style>
