@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/MainLayout.astro";
+
+export async function getStaticPaths({ paginate }: any) {
+    const allBlogPosts = await getCollection("posts");
+    return paginate(allBlogPosts, { pageSize: 1 });
+}
+
+const { page }: any = Astro.props;
+---
+
+<Layout title="咸鱼的日常" description="">
+    <section>
+        <ul>
+            {page.data.map(({ data, slug }: any) => <li>{slug}{data.title}</li>)}
+        </ul>
+    </section>
+</Layout>
