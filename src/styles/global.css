@@ -5,12 +5,14 @@ html {
 body {
     background-image: linear-gradient(to right, rgba(0, 0, 0, .04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, .04) 1px, transparent 1px);
 	background-size: 7px 7px;
-    font-family: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-family: "LXGW WenKai TC", cursive;
     color: #2e405b;
     line-height: normal;
     height: inherit;
 }
 
-.font-ibm {
-    font-family: IBM Plex Mono;
+.container {
+    margin: 0 auto;
+    max-width: 56rem;
+    width: 100%;
 }

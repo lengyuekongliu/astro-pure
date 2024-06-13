@@ -1,7 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro'
+import Header from '../components/Header.vue'
 
 const { title, description } = Astro.props;
 ---
@@ -12,7 +12,7 @@ const { title, description } = Astro.props;
         <BaseHead title={title} description={description} />
     </head>
     <body class="flex flex-col">
-        <Header />
+        <Header client:only="vue"/>
         <main class="flex-1">
             <div class="max-w-3xl px-4 mx-auto flex-1">
                 <slot />
@@ -21,19 +21,3 @@ const { title, description } = Astro.props;
         <Footer />
     </body>
 </html>
-
-<style is:global>
-a{
-    padding: 1px 2px;
-    /* text-decoration-line: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px; */
-    @apply transition-colors duration-200 ease-in;
-}
-
-a:hover {
-    color: white;
-    background-color: #2e405b;
-    /* text-decoration-line: none; */
-}
-</style>
