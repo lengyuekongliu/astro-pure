@@ -11,15 +11,27 @@ function openMenu() {
 <template>
     <header class="container">
         <div class="navigation">
-            <a href="#" class="navigation-title">KongLiu's Blog</a>
+            <a href="/" class="navigation-title">KongLiu's Blog</a>
             <nav class="menu flex flex-col" :class="{ 'active': menuActive }">
                 <button class="menu-button self-end" @click="openMenu">
                     <i class="iconify text-3xl" :class="[menuActive ? 'mdi--close' : 'mdi--menu']"></i>
                 </button>
-                <ul :class="{ 'hidden': !menuActive }" class="md:block md:self-end">
-                    <li>1111</li>
-                    <li>1111</li>
-                    <li>1111</li>
+                <ul :class="{ 'hidden': !menuActive }" class="gap-4 pt-4 text-center md:flex md:self-end md:pt-0">
+                    <li>
+                        <a href="/" class="hover:underline underline-offset-2">主页</a>
+                    </li>
+                    <li>
+                        <a href="/archive" class="hover:underline underline-offset-2">归档</a>
+                    </li>
+                    <li>
+                        <a href="/tags" class="hover:underline underline-offset-2">标签</a>
+                    </li>
+                    <li>
+                        <a href="/about" class="hover:underline underline-offset-2">关于</a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" target="_blank" class="hover:underline underline-offset-2">RSS</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -35,6 +47,10 @@ function openMenu() {
 
 .navigation .menu-button {
     @apply flex items-center md:hidden;
+}
+
+.navigation .menu {
+    line-height: 30px;
 }
 
 .navigation .navigation-title {

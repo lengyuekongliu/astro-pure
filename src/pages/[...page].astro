@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/MainLayout.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 export async function getStaticPaths({ paginate }: any) {
     const allBlogPosts = await getCollection("posts");
@@ -10,7 +11,7 @@ export async function getStaticPaths({ paginate }: any) {
 const { page }: any = Astro.props;
 ---
 
-<Layout title="咸鱼的日常" description="">
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
     <section>
         <ul>
             {page.data.map(({ data, slug }: any) => <li>{slug}{data.title}</li>)}
