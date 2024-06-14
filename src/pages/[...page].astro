@@ -1,20 +1,17 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/MainLayout.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, PAGE_SIZE } from '../consts';
+import { getSortedPosts } from "../utils/content-utils";
+import PostPage from "../components/PostPage.astro";
 
 export async function getStaticPaths({ paginate }: any) {
-    const allBlogPosts = await getCollection("posts");
-    return paginate(allBlogPosts, { pageSize: 1 });
+    const allBlogPosts = await getSortedPosts();
+    return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 }
 
 const { page }: any = Astro.props;
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-    <section>
-        <ul>
-            {page.data.map(({ data, slug }: any) => <li>{slug}{data.title}</li>)}
-        </ul>
-    </section>
+    <PostPage page={page} />
 </Layout>

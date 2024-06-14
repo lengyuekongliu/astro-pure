@@ -18,20 +18,23 @@ function openMenu() {
                 </button>
                 <ul :class="{ 'hidden': !menuActive }" class="gap-4 pt-4 text-center md:flex md:self-end md:pt-0">
                     <li>
-                        <a href="/" class="hover:underline underline-offset-2">主页</a>
+                        <a href="/" class="link">主页</a>
                     </li>
                     <li>
-                        <a href="/archive" class="hover:underline underline-offset-2">归档</a>
+                        <a href="/archive" class="link">归档</a>
                     </li>
                     <li>
-                        <a href="/tags" class="hover:underline underline-offset-2">标签</a>
+                        <a href="/tags" class="link">标签</a>
                     </li>
                     <li>
-                        <a href="/about" class="hover:underline underline-offset-2">关于</a>
+                        <a href="/about" class="link">关于</a>
                     </li>
                     <li>
+                        <a href="/search" class="">搜索</a>
+                    </li>
+                    <!-- <li>
                         <a href="/rss.xml" target="_blank" class="hover:underline underline-offset-2">RSS</a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>

@@ -1,9 +1,11 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('posts');
+	const posts = await getCollection('posts', ({ data }) => {
+		return import.meta.env.PROD ? data.draft !== true : true;
+	});
 	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post,
@@ -12,9 +14,157 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'posts'>;
 
 const post = Astro.props;
-const { Content } = await post.render();
+// const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data}>
-	<Content />
-</BlogPost>
+<MainLayout title={post.data.title} description={post.data.description}>
+	<div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+		<div>11111</div>
+	</div>
+	<button id="btn">TOP</button>
+</MainLayout>
+
+<script>
+
+function loadButtonScript() {
+	document.getElementById('btn')?.addEventListener('click', () => {
+		window.scrollTo({ top: 0, behavior: 'smooth'})
+	})
+}
+
+function init() {
+	loadButtonScript()
+}
+
+init();
+
+document.addEventListener('astro:after-swap', init);
+
+</script>

@@ -1,0 +1,18 @@
+---
+import PostCard from "./PostCard.astro";
+
+const { page } = Astro.props;
+---
+
+<section class="flex flex-col gap-4">
+    {
+        page.data.map(({ data, slug }: any) => (
+            <PostCard
+                title={data.title}
+                pubDate={data.pubDate}
+                description={data.description}
+                slug={slug}
+            />
+        ))
+    }
+</section>
