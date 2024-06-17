@@ -21,7 +21,7 @@ const { title, description } = Astro.props;
         <!-- <Header client:only="vue"/> -->
         <Header/>
         <main class="flex-1">
-            <div class="container px-4 mx-auto flex-1">
+            <div class="container px-4 mx-auto flex-1 h-full">
                 <slot />
             </div>
         </main>
@@ -48,6 +48,16 @@ function initCustomScrollbar() {
             }
         }
     );
+
+    document.querySelectorAll('pre').forEach(ele => {
+        OverlayScrollbars(ele, {
+			scrollbars: {
+				autoHide: 'leave',
+				autoHideDelay: 500,
+				autoHideSuspend: false
+			}
+		});
+    })
 }
 
 function init() {

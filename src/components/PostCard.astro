@@ -3,12 +3,13 @@ import { formatDateToYYYYMMDD } from "../utils/date-utils";
 
 interface Props {
     title: string;
-    pubDate: Date;
+    date: Date;
     description: string;
+    tags: string[]
     slug: string;
 }
 
-const { title, pubDate, description, slug } = Astro.props;
+const { title, date, description, slug, tags } = Astro.props;
 ---
 
 <div class="flex flex-col gap-1">
@@ -16,10 +17,8 @@ const { title, pubDate, description, slug } = Astro.props;
         <a href={`/posts/${slug}`} class="text-xl font-bold link">{title}</a>
     </div>
     <div class="flex gap-4 text-sm text-gray-400">
-        <span>发布于 {formatDateToYYYYMMDD(pubDate)}</span>
-        <span>
-            <a href="/" class="link">#标签</a>
-        </span>
+        <span>发布于 {formatDateToYYYYMMDD(date)}</span>
+        { tags?.map((tag) => <a href="/" class="link">#{tag}</a>) }
     </div>
     <div class="text-lg">
         {description}

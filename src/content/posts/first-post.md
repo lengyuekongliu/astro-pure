@@ -1,7 +1,8 @@
 ---
 title: '中文标题文章'
-description: 'How you can make AstroPaper theme absolutely yours.'
-pubDate: 'Jul 08 2024'
+description: '一篇测试文章，测试在中文下是否能正确显示。'
+date: 'Jul 08 2024'
+tags: ['测试标签']
 heroImage: '/blog-placeholder-3.jpg'
 ---
 

@@ -1,7 +1,15 @@
 ---
+import { getEntry } from 'astro:content';
 import Layout from '../layouts/MainLayout.astro';
+import Markdown from '../components/Markdown.astro';
+
+const aboutPost = await getEntry('spec', 'about')
+
+const { Content } = await aboutPost.render()
 ---
 
 <Layout title="关于" description="">
-	<div>关于</div>
+	<Markdown>
+		<Content />
+	</Markdown>
 </Layout>

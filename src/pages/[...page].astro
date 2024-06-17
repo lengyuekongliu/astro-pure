@@ -13,5 +13,15 @@ const { page }: any = Astro.props;
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-    <PostPage page={page} />
+    <div class="h-full flex flex-col">
+        <PostPage page={page} />
+        <div class="text-lg flex items-center justify-center pt-8 mt-auto">
+            { page.url.prev ? <a href={page.url.prev} class="link select-none">上一页</a> : <span class="text-gray-400 select-none">上一页</span> }
+            <span class="px-4">{page.currentPage}/{page.lastPage}</span>
+            { page.url.next ? <a href={page.url.next} class="link select-none">下一页</a> : <span class="text-gray-400 select-none">下一页</span> } 
+           
+        </div>
+    </div>
 </Layout>
+
+<script>

@@ -1,6 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
+import Markdown from '../../components/Markdown.astro';
+import { formatDateToYYYYMMDD } from '../../utils/date-utils';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts', ({ data }) => {
@@ -14,141 +16,23 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'posts'>;
 
 const post = Astro.props;
-// const { Content } = await post.render();
+const { Content } = await post.render();
 ---
 
 <MainLayout title={post.data.title} description={post.data.description}>
-	<div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
-		<div>11111</div>
+	<div class="title">{post.data.title}</div>
+	<div class="pb-4 text-gray-400 flex gap-4">
+		<span>发布于 {formatDateToYYYYMMDD(post.data.date)}</span>
+		{ post.data.tags?.map(tag => <a href="/" class="link">#{tag}</a>) }
 	</div>
-	<button id="btn">TOP</button>
+	<Markdown>
+		<Content />
+	</Markdown>
+	<hr class="line" />
+	<div class="flex justify-between items-center pb-8">
+		<span>&copy; 作品采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可</span>
+		<button id="btn" class="link">回到顶部</button>
+	</div>
 </MainLayout>
 
 <script>
@@ -168,3 +52,14 @@ init();
 document.addEventListener('astro:after-swap', init);
 
 </script>
+
+<style>
+	.title {
+		@apply text-2xl pb-2 font-bold;
+	}
+
+	.line {
+		border-color: #2e405b52;
+		margin: 1.5rem 0;
+	}
+</style>

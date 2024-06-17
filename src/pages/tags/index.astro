@@ -1,7 +1,13 @@
 ---
 import Layout from "../../layouts/MainLayout.astro"
+import { getTagList } from "../../utils/content-utils"
+
+const tags = await getTagList()
 ---
 
 <Layout title="标签">
-    <div>标签</div>
+    <div class="text-2xl pb-2 font-bold">标签</div>
+    <div class="flex gap-4 flex-wrap">
+        { tags.map(tag => <a href={`/tags/${tag.name}`} class="link">#{tag.name}</a>) }
+    </div>
 </Layout>

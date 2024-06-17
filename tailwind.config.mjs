@@ -4,9 +4,19 @@ const { addIconSelectors } = require('@iconify/tailwind');
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		extend: {},
+		extend: {
+			typography: {
+				DEFAULT: {
+				  css: {
+					'blockquote p:first-of-type::before': false,
+					'blockquote p:first-of-type::after': false,
+				  },
+				},
+			},
+		},
 	},
 	plugins: [
-		addIconSelectors(['mdi'])
+		addIconSelectors(['mdi']),
+		require('@tailwindcss/typography')
 	],
 }
