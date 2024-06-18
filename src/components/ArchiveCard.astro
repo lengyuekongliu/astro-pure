@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { formatDateToYYYYMMDD } from '../utils/date-utils'
+
+export interface Props {
+    year: string,
+    posts: CollectionEntry<'posts'>[]
+}
+
+const { year, posts } = Astro.props 
+---
+
+<div>
+    <div class="text-lg font-bold">{year}</div>
+    { posts.map(post => 
+        <div class="flex gap-4 pl-4">
+            <span class="text-gray-400">{formatDateToYYYYMMDD(post.data.date).substring(5)}</span>
+            <a href={`/posts/${post.slug}`} class="link">{post.data.title}</a>
+        </div>
+    )}
+</div>

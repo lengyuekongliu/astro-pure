@@ -2,54 +2,39 @@
 
 ---
 
-<header class="container" transition:persist>
-    <div class="navigation">
+<header class="container">
+    <div id="navigation" class="navigation">
         <a href="/" class="navigation-title">KongLiu's Blog</a>
-        <nav id="menu" class="menu flex flex-col">
+        <nav class="menu flex flex-col">
             <button id="menu-button" class="menu-button self-end">
                 <i class="iconify text-3xl mdi--menu"></i>
                 <i class="iconify text-3xl mdi--close"></i>
             </button>
-            <ul id="menu-list" class="hidden gap-4 pt-4 text-center md:flex md:self-end md:pt-0">
-                <li>
-                    <a href="/" class="link">主页</a>
-                </li>
-                <li>
-                    <a href="/archive" class="link">归档</a>
-                </li>
-                <li>
-                    <a href="/tags" class="link">标签</a>
-                </li>
-                <li>
-                    <a href="/about" class="link">关于</a>
-                </li>
-                <li>
-                    <a href="/search" class="link">搜索</a>
-                </li>
-                <!-- <li>
-                    <a href="/rss.xml" target="_blank" class="hover:underline underline-offset-2">RSS</a>
-                </li> -->
-            </ul>
+            <div id="menu-list" class="hidden md:flex md:self-end justify-center transition-all overflow-hidden duration-200" >
+                <ul class="gap-4 pt-4 text-center md:flex md:pt-0">
+                    <li>
+                        <a href="/" class="link">主页</a>
+                    </li>
+                    <li>
+                        <a href="/archive" class="link">归档</a>
+                    </li>
+                    <li>
+                        <a href="/tags" class="link">标签</a>
+                    </li>
+                    <li>
+                        <a href="/about" class="link">关于</a>
+                    </li>
+                    <li>
+                        <a href="/search" class="link">搜索</a>
+                    </li>
+                    <!-- <li>
+                        <a href="/rss.xml" target="_blank" class="hover:underline underline-offset-2">RSS</a>
+                    </li> -->
+                </ul>
+            </div>
         </nav>
     </div>
 </header>
-
-<script>
-
-function loadButtonScript() {
-    document.getElementById('menu-button')?.addEventListener('click', () => {
-        document.getElementById('menu')?.classList.toggle('active')
-        document.getElementById('menu-list')?.classList.toggle('hidden')
-    })
-}
-
-function init() {
-    loadButtonScript()
-}
-
-init()
-
-</script>
 
 <style>
 .navigation {
@@ -65,9 +50,9 @@ init()
 }
 
 .navigation .navigation-title {
-    background: -webkit-linear-gradient(45deg, #e5b751, #1677b3, #cc5595 80%);
+    /* background: -webkit-linear-gradient(45deg, #e5b751, #1677b3, #cc5595 80%);
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
     font-size: 1.25rem;
     font-weight: bold;
     position: absolute;
@@ -78,11 +63,33 @@ init()
     display: none;
 }
 
-.menu.active .mdi--close {
+#navigation.active .menu .mdi--close {
     display: inline;
 }
 
-.menu.active .mdi--menu {
+#navigation.active .menu .mdi--menu {
     display: none;
 }
+
+#navigation.active #menu-list {
+    display: flex;
+}
 </style>
+
+<script>
+
+function loadButtonScript() {
+    document.getElementById('menu-button')?.addEventListener('click', () => {
+        document.getElementById('navigation')?.classList.toggle('active')
+    })
+}
+
+function init() {
+    loadButtonScript()
+}
+
+init()
+
+document.addEventListener('astro:after-swap', init)
+
+</script>

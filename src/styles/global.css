@@ -3,8 +3,8 @@ html {
 }
 
 body {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, .04) 1px, transparent 1px);
-	background-size: 7px 7px;
+    /* background-image: linear-gradient(to right, rgba(0, 0, 0, .04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, .04) 1px, transparent 1px);
+	background-size: 7px 7px; */
     font-family: 'LXGW WenKai Lite', IBM Plex Mono, monospace;
     color: #2e405b;
     line-height: normal;
@@ -23,7 +23,7 @@ body {
 
 @keyframes fade-in-up {
     0% {
-        transform: translateY(2rem);
+        transform: translateY(-2rem);
         opacity: 0;
     }
     100% {
@@ -34,6 +34,6 @@ body {
 
 .onload-animation {
     opacity: 0;
-    animation: 300ms fade-in-up;
+    animation: 200ms fade-in-up;
     animation-fill-mode: forwards;
 }

@@ -1,6 +1,7 @@
 ---
+import ArchiveCard from '../../components/ArchiveCard.astro';
 import MainLayout from '../../layouts/MainLayout.astro';
-import { getSortedPosts, getTagList } from '../../utils/content-utils';
+import { getArchive, getSortedPosts, getTagList } from '../../utils/content-utils';
 import { formatDateToYYYYMMDD } from '../../utils/date-utils';
 
 export async function getStaticPaths() {
@@ -10,11 +11,15 @@ export async function getStaticPaths() {
 
 const { tag }: any = Astro.props;
 
-const posts = (await getSortedPosts()).filter(post => (post.data.tags && post.data.tags.includes(tag.name)))
+const archive = await getArchive(tag.name)
+
+const years = Object.keys(archive).sort((a, b) => b.localeCompare(a))
 
 ---
 
 <MainLayout title={`标签：${tag.name}`} description={tag.name}>
-    <div class="text-2xl pb-2 font-bold">标签：{tag.name}</div>
-    { posts.map(post => <div><span class="pr-4 text-gray-400">{formatDateToYYYYMMDD(post.data.date)}</span><a href={`/posts/${post.slug}`} class="link">{post.data.title}</a></div>) }
+    <div class="text-2xl pb-4 font-bold">标签：{tag.name}</div>
+    <div class="flex flex-col gap-4">
+        { years.map(year => <ArchiveCard year={year} posts={archive[year]}></ArchiveCard>) }
+    </div>
 </MainLayout>

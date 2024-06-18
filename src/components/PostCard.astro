@@ -18,7 +18,7 @@ const { title, date, description, slug, tags } = Astro.props;
     </div>
     <div class="flex gap-4 text-sm text-gray-400">
         <span>发布于 {formatDateToYYYYMMDD(date)}</span>
-        { tags?.map((tag) => <a href="/" class="link">#{tag}</a>) }
+        { tags?.map((tag) => <a href={`/tags/${tag}`} class="link">#{tag}</a>) }
     </div>
     <div class="text-lg">
         {description}

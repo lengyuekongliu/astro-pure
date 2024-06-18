@@ -33,3 +33,15 @@ export async function getTagList() {
 
     return keys.map(key => ({ name: key, count: countMap[key] }))
 }
+
+export async function getArchive(tag?: string) {
+    let posts = tag ? (await getSortedPosts()).filter(post => (tag && post.data.tags && post.data.tags.includes(tag))) : await getSortedPosts()
+    const map: { [key: string]: any[] } = {}
+    posts.map(post => {
+        const year = post.data.date.getFullYear()
+        if (!map[year]) map[year] = []
+        map[year].push(post)
+    })
+
+    return map;
+}
