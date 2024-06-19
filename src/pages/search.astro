@@ -4,11 +4,15 @@ import { url } from "../utils/url-tuils";
 ---
 
 <Layout title="搜索">
-  <div id="search"></div>
-  <!-- <script is:inline>
-    new PagefindUI({ element: "#search", resetStyles: false, showImages: false });
-  </script> -->
-</Layout>
+  <div class="text-2xl pb-4 font-bold">搜索</div>
+  <div class="relative">
+    <i class="absolute iconify mdi--search text-3xl opacity-75 left-2 top-2">111</i>
+    <input id="search" type="text" autocomplete="off" placeholder="Search for anything..." class="block bg-skin-fill border border-opacity-40 border-skin-fill focus:border-skin-accent focus:outline-none pl-10 placeholder:italic placeholder:text-opacity-75 pr-3 py-3 rounded w-full">
+  </div>
+  <div id="search-result-text" class="pt-4"></div>
+  <ul id="search-result">
+  </ul>
+ </Layout>
 
 <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
   async function loadPagefind() {
@@ -17,11 +21,66 @@ import { url } from "../utils/url-tuils";
           'excerptLength': 20
       })
       pagefind.init()
-      window.pagefind = pagefind
-      const search = await pagefind.search('标题')     // speed up the first search
-      console.log(await search.results[0].data());
+      // window.pagefind = pagefind
+      pagefind.search('')     // speed up the first search
+
+      document.getElementById('search').oninput = async (event) => {
+        const value = event.target.value
+
+        const list = document.getElementById('search-result')
+        list.innerHTML = ''
+
+        if (value.trim() === '') {
+          document.getElementById('search-result-text').innerText = ''
+
+          return
+        }
+
+        const search = await pagefind.search(value)
+
+        document.getElementById('search-result-text').innerText = `搜索到 ${search.results.length} 篇与 '${value}' 相关的文章`
+        for (const item of search.results) {
+          const data = await item.data()
+          const li = document.createElement('li')
+          
+          const title = document.createElement('a')
+          title.href = data.url;
+          title.innerText = data.meta.title
+          title.classList.add('link')
+
+          const content = document.createElement('p')
+          content.innerHTML = data.excerpt
+
+          const div = document.createElement('div')
+          div.appendChild(title)
+          li.appendChild(div)
+          li.appendChild(content)
+          list.appendChild(li)
+        }
+      }
   }
   loadPagefind()
 </script>
+
+<style lang="less" is:global>
+ul#search-result {
+  @apply flex flex-col gap-6 pt-4;
+  li {
+    @apply flex flex-col gap-1;
+    a {
+      @apply font-bold text-xl;
+    }
+
+    p {
+      mark {
+        background: none;
+        // color: red;
+        @apply font-bold text-sky-500;
+      }
+    }
+  }
+}
+
+</style>
 
   
