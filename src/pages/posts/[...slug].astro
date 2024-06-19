@@ -25,9 +25,11 @@ const { Content } = await post.render();
 		<span>发布于 {formatDateToYYYYMMDD(post.data.date)}</span>
 		{ post.data.tags?.map(tag => <a href={`/tags/${tag}`} class="link">#{tag}</a>) }
 	</div>
-	<Markdown>
-		<Content/>
-	</Markdown>
+	<div data-pagefind-body>
+		<Markdown>
+			<Content/>
+		</Markdown>
+	</div>
 	<!-- <hr class="line" />
 	<div class="flex justify-between items-center pb-8">
 		<span>&copy; 作品采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" class="link">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可</span>
