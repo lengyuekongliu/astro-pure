@@ -22,7 +22,7 @@ import { url } from "../utils/url-tuils";
       })
       pagefind.init()
       // window.pagefind = pagefind
-      pagefind.search('')     // speed up the first search
+      await pagefind.search('')     // speed up the first search
 
       document.getElementById('search').oninput = async (event) => {
         const value = event.target.value
@@ -32,7 +32,6 @@ import { url } from "../utils/url-tuils";
 
         if (value.trim() === '') {
           document.getElementById('search-result-text').innerText = ''
-
           return
         }
 
@@ -52,9 +51,13 @@ import { url } from "../utils/url-tuils";
           content.innerHTML = data.excerpt
 
           const div = document.createElement('div')
+          const hr = document.createElement('div')
+          hr.className = 'border-b-[1px] my-3 border-dashed border-gray-200'
+
           div.appendChild(title)
           li.appendChild(div)
           li.appendChild(content)
+          li.appendChild(hr)
           list.appendChild(li)
         }
       }
@@ -64,7 +67,7 @@ import { url } from "../utils/url-tuils";
 
 <style lang="less" is:global>
 ul#search-result {
-  @apply flex flex-col gap-6 pt-4;
+  @apply flex flex-col pt-4;
   li {
     @apply flex flex-col gap-1;
     a {

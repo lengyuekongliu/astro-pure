@@ -26,6 +26,12 @@ const { title, description } = Astro.props;
             </div>
         </main>
         <Footer />
+
+        <div class="fixed right-4 bottom-4 md:right-8 md:bottom-8">
+            <button id="back-to-top" class="shadow-md w-11 h-11 flex justify-center items-center rounded-lg bg-gray-100">
+                <i class="iconify mdi--arrow-up-bold text-3xl text-gray-500"></i>
+            </button>
+        </div>
     </body>
 </html>
 
@@ -60,8 +66,32 @@ function initCustomScrollbar() {
     })
 }
 
+
+function loadButtonScript() {
+    // 初始化滚动按钮
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop > 200) {
+        document.getElementById('back-to-top')?.parentElement?.classList.remove('hidden')
+    } else {
+        document.getElementById('back-to-top')?.parentElement?.classList.add('hidden')
+    }
+
+    window.addEventListener('scroll', () => {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > 200) {
+            document.getElementById('back-to-top')?.parentElement?.classList.remove('hidden')
+        } else {
+            document.getElementById('back-to-top')?.parentElement?.classList.add('hidden')
+        }
+    })
+    document.getElementById('back-to-top')?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+}
+
 function init() {
     initCustomScrollbar()
+    loadButtonScript()
 }
 
 init()
