@@ -11,9 +11,9 @@ const { year, posts } = Astro.props
 ---
 
 <div>
-    <div class="text-lg font-bold">{year}</div>
+    <div class="text-xl font-bold">{year}</div>
     { posts.map(post => 
-        <div class="flex gap-4 pl-4">
+        <div class="flex gap-4 pl-4 text-lg pt-1">
             <span class="text-gray-400">{formatDateToYYYYMMDD(post.data.date).substring(5)}</span>
             <a href={`/posts/${post.slug}`} class="link">{post.data.title}</a>
         </div>

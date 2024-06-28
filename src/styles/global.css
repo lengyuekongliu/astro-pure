@@ -18,7 +18,8 @@ body {
 }
 
 .link {
-    @apply hover:underline underline-offset-4;
+    /* @apply hover:underline underline-offset-4; */
+    @apply hover:text-sky-500;
 }
 
 @keyframes fade-in-up {
