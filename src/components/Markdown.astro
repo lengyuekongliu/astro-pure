@@ -2,6 +2,54 @@
     <slot/>
 </article >
 
+<script>
+function addPreCopyButton() {
+
+    document.querySelectorAll('pre').forEach(ele => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'relative'
+        ele.parentNode?.insertBefore(wrapper, ele)
+
+        
+        const copyBtn = document.createElement('button')
+        copyBtn.type = 'button'
+        copyBtn.className = 'absolute right-2 top-2 bg-gray-600 p-1.5 rounded text-gray-200 transition-all duration-300'
+        copyBtn.innerHTML = '<i class="iconify text-xl block mdi--content-copy" />'
+
+        wrapper.appendChild(ele)
+        wrapper.appendChild(copyBtn)
+
+        let timeout: any;
+        copyBtn.addEventListener('click', async () => {
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+            const text = ele.querySelector('code')?.innerText
+            await navigator.clipboard.writeText(text || '');
+            copyBtn.children[0].classList.remove('mdi--content-copy')
+            copyBtn.children[0].classList.add('mdi--success')
+            copyBtn.classList.remove('bg-gray-600')
+            copyBtn.classList.add('bg-blue-500')
+
+            timeout = setTimeout(() => {
+                copyBtn.children[0].classList.remove('mdi--success')
+                copyBtn.children[0].classList.add('mdi--content-copy')
+                copyBtn.classList.remove('bg-blue-500')
+                copyBtn.classList.add('bg-gray-600')
+            }, 1000)
+        })
+    })
+}
+
+function init() {
+    addPreCopyButton()
+}
+
+init()
+
+document.addEventListener('astro:after-swap', init)
+</script>
+
 <style lang="less" is:global>
 .custom-md {
     
