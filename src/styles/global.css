@@ -5,6 +5,7 @@ html {
 body {
     /* background-image: linear-gradient(to right, rgba(0, 0, 0, .04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, .04) 1px, transparent 1px);
 	background-size: 7px 7px; */
+    background-color: rgba(251, 254, 251, 1);
     font-family: 'LXGW WenKai Lite', IBM Plex Mono, monospace;
     color: #2e405b;
     line-height: normal;
