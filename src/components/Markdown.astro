@@ -2,15 +2,8 @@
     <slot/>
 </article >
 
-<script>
-const observer = new MutationObserver(addPreCopyButton);
-observer.observe(document.body, { childList: true, subtree: true });
-
-document.addEventListener("DOMContentLoaded", addPreCopyButton);
-
+<script is:inline>
 function addPreCopyButton() {
-    observer.disconnect();
-
     document.querySelectorAll('pre').forEach(ele => {
         const wrapper = document.createElement('div');
         wrapper.className = 'relative'
@@ -25,7 +18,7 @@ function addPreCopyButton() {
         wrapper.appendChild(ele)
         wrapper.appendChild(copyBtn)
 
-        let timeout: any;
+        let timeout;
         copyBtn.addEventListener('click', async () => {
             if (timeout) {
                 clearTimeout(timeout);
@@ -45,10 +38,9 @@ function addPreCopyButton() {
             }, 1000)
         })
     })
-
-    
-    observer.observe(document.body, { childList: true, subtree: true });
 }
+
+addPreCopyButton()
 </script>
 
 <style lang="less" is:global>
