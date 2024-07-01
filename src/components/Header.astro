@@ -4,15 +4,15 @@
 
 <header class="container">
     <div id="navigation" class="navigation relative">
-        <div id="mask" class="mask onload-animation md:!hidden"></div>
+        <div id="mask" class="mask md:!hidden"></div>
         <a href="/" class="navigation-title z-20">KongLiu's Blog</a>
         <nav class="menu flex flex-col">
             <button id="menu-button" class="menu-button self-end z-20">
                 <i class="iconify text-3xl mdi--menu"></i>
                 <i class="iconify text-3xl mdi--close"></i>
             </button>
-            <div id="menu-list" class="hidden md:flex md:self-end justify-end transition-all overflow-hidden duration-200">
-                <ul class="gap-4 pt-2 text-center md:flex md:pt-0 absolute md:static onload-animation md:!animate-none md:!opacity-100 z-20 tracking-[.5rem] md:tracking-widest text-lg md:text-base">
+            <div id="menu-list" class="flex md:self-end justify-end overflow-hidden">
+                <ul class="gap-4 pt-2 text-center md:flex md:pt-0 absolute md:static z-20 tracking-[.5rem] md:tracking-widest text-lg md:text-base">
                     <li>
                         <a href="/" class="link">主页</a>
                     </li>
@@ -72,16 +72,20 @@
     display: none;
 }
 
-#navigation.active #menu-list {
-    display: flex;
+#navigation.active #menu-list ul {
+    @apply visible translate-y-0 opacity-100;
+}
+
+#menu-list ul {
+ @apply invisible opacity-0 md:opacity-100 md:visible md:translate-y-0 -translate-y-8 transition-[opacity,transform,visibility];
 }
 
 #navigation.active .mask {
-    display: block;
+    @apply visible opacity-100 translate-y-0;
 }
 
 .mask {
-    @apply hidden fixed top-0 left-0 w-screen h-screen bg-[#ffffff80] backdrop-blur-sm z-10;
+    @apply invisible opacity-0 -translate-y-8 fixed top-0 left-0 w-screen h-screen bg-slate-100 bg-opacity-50 backdrop-blur-sm z-10 transition-[opacity,transform,visibility];
 }
 </style>
 
