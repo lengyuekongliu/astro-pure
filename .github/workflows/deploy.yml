@@ -18,6 +18,6 @@ jobs:
                 port: 22
                 script: |
                     cd ~/blog
-                    git pull origin dev
+                    git pull
                     npm install
                     npm build
