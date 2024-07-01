@@ -3,7 +3,13 @@
 </article >
 
 <script>
+const observer = new MutationObserver(addPreCopyButton);
+observer.observe(document.body, { childList: true, subtree: true });
+
+document.addEventListener("DOMContentLoaded", addPreCopyButton);
+
 function addPreCopyButton() {
+    observer.disconnect();
 
     document.querySelectorAll('pre').forEach(ele => {
         const wrapper = document.createElement('div');
@@ -39,15 +45,10 @@ function addPreCopyButton() {
             }, 1000)
         })
     })
+
+    
+    observer.observe(document.body, { childList: true, subtree: true });
 }
-
-function init() {
-    addPreCopyButton()
-}
-
-init()
-
-document.addEventListener('astro:after-swap', init)
 </script>
 
 <style lang="less" is:global>
